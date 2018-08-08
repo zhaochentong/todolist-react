@@ -6,28 +6,31 @@ class ToDoList extends Component {
 	  super(props);
 	
 	  this.state = {
-	  	list: [
-	  		'learn react',
-	  		'learn github',
-	  		'play detention'
-	  	]
-	  };
+	  	list: [],
+	  	inputValue: ''
+	  }
 	}
 
 	handleBtnClick(){
 		this.setState({
-			list:[...this.state.list,'hello world']
+			list:[...this.state.list, this.state.inputValue]
+		})
+	}
+
+	handleInputChange(e){
+		this.setState({
+			inputValue: e.target.value
 		})
 	}
 
 	render() {
     	return (
       		<div className="ToDoList">
-        	<input/>
+        	<input onChange = {this.handleInputChange.bind(this)}/>
         	<button onClick = {this.handleBtnClick.bind(this)}>add</button>
 			<ul>
 				{
-				this.state.list.map((item) => {return <li>{item}</li>})
+				this.state.list.map((item,index) => {return <li key = {index}>{item}</li>})
 				}
 			</ul>
       		</div>
