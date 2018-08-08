@@ -13,8 +13,10 @@ class ToDoList extends Component {
 
 	handleBtnClick(){
 		this.setState({
-			list:[...this.state.list, this.state.inputValue]
+			list:[...this.state.list, this.state.inputValue],
+			inputValue: ''
 		})
+
 	}
 
 	handleInputChange(e){
@@ -23,14 +25,22 @@ class ToDoList extends Component {
 		})
 	}
 
+	handleItemClick(index){
+		const list = [...this.state.list];
+		list.splice(index,1);
+		this.setState({
+			list
+		})
+	}
+
 	render() {
     	return (
       		<div className="ToDoList">
-        	<input onChange = {this.handleInputChange.bind(this)}/>
+        	<input value = {this.state.inputValue} onChange = {this.handleInputChange.bind(this)}/>
         	<button onClick = {this.handleBtnClick.bind(this)}>add</button>
 			<ul>
 				{
-				this.state.list.map((item,index) => {return <li key = {index}>{item}</li>})
+				this.state.list.map((item,index) => {return <li key = {index} onClick = {this.handleItemClick.bind(this,index)}>{item}</li>})
 				}
 			</ul>
       		</div>
