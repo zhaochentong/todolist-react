@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ToDoItem from './ToDoItem'
 
 class ToDoList extends Component {
 
@@ -40,7 +41,10 @@ class ToDoList extends Component {
         	<button onClick = {this.handleBtnClick.bind(this)}>add</button>
 			<ul>
 				{
-				this.state.list.map((item,index) => {return <li key = {index} onClick = {this.handleItemClick.bind(this,index)}>{item}</li>})
+				this.state.list.map((item,index) => {
+					// return <li key = {index} onClick = {this.handleItemClick.bind(this,index)}>{item}</li>
+					return <ToDoItem key = {index} content = {item} />
+				})
 				}
 			</ul>
       		</div>
