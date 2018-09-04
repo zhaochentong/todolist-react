@@ -1,7 +1,7 @@
-import React, { Component,Fragment } from 'react';
+import React, { Component } from 'react';
 import store from './store/index.js';
 import 'antd/dist/antd.css';
-import { changeInputValue, addListItem, deleteItem } from './store/actionCreators.js'
+import { changeInputValue, addListItem, deleteItem, initListData, getToDoList } from './store/actionCreators.js'
 import ToDoListUI from './ToDoListUI.js';
 
 class ToDoList extends Component {
@@ -29,7 +29,11 @@ class ToDoList extends Component {
         handleItemDelete = {this.handleItemDelete}
       />
     );
-    
+  }
+
+  componentDidMount(){
+    const action = getToDoList();
+    store.dispatch(action);
   }
 
   handleInputChange(e){

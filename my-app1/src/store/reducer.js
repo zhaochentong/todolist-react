@@ -1,11 +1,9 @@
-import { CHANGE_INPUT_VALUE, ADD_LIST_ITEM, DELETE_ITEM } from './actionTypes.js'
+import { CHANGE_INPUT_VALUE, ADD_LIST_ITEM, DELETE_ITEM, INIT_LIST_DATA } from './actionTypes.js'
 
 
 const defaultState = {
 	inputValue: 'drinking beer',
-	list: [
-		'learning whatever'
-	]
+	list: []
 }
 
 export default (state = defaultState, action) => {
@@ -25,6 +23,12 @@ export default (state = defaultState, action) => {
 	if(action.type === DELETE_ITEM){
 		const newState = JSON.parse(JSON.stringify(state));
 		newState.list.splice(action.index,1);
+		return newState;
+	}
+
+	if(action.type === INIT_LIST_DATA){
+		const newState = JSON.parse(JSON.stringify(state));
+		newState.list = action.data;
 		return newState;
 	}
 
